@@ -19,6 +19,12 @@
         </dependency>
 
         <dependency>
+            <groupId>in.hocg.boot</groupId>
+            <artifactId>spring-boot-mybatis-plus</artifactId>
+            <version>1.0.57</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
