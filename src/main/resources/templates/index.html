@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+</head>
+<body>
+<h1>用户列表</h1>
+<form action="/user/findByName">
+    <input type="text" name="keywords" th:value=" ${keywords}">
+    <button>搜索</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td>
+            <a th:href="@{/user/{id}(id=${user.id})}">查看</a>
+            <a th:href="@{/user/edit/{id}(id=${user.id})
+
+}">编辑</a>
+            <a th:href="@{/user/delete/{id}(id=${user.id})}">删除</a>
+        </td>
+    </tr>
+</table>
+<div align="center" style="margin-top: 15px;">
+    <a class="allpage"><b th:text="'共 '+ ${pageInfo.getPages()}+ ' 页'"></b></a>
+    <a th:href="@{/(currentPage=${pageInfo.getFirstPage()})}" >首页</a>
+    <a th:if="${pageInfo.hasPreviousPage()} == true" th:href="@{/(currentPage=${pageInfo.getPrePage()})}"  >上一页</a>
+    <a th:href="@{'/?currentPage=' + ${i}}"  th:each="i :${#numbers.sequence(pageInfo.firstPage, pageInfo.lastPage)}" th:text="${i}+' '" th:class="${pageInfo.getPageNumber() == i}? 'page-item active' :'page-item' "></a>
+    <a th:if="${pageInfo.hasNextPage()} == true" th:href="@{/(currentPage=${pageInfo.getNextPage()})}" >下一页</a>
+    <a th:href="@{/(currentPage=${pageInfo.getLastPage()})}" >尾页</a>
+</div>
+
+<a th:href="@{/user/create}">新增</a>
+</body>
+</html>

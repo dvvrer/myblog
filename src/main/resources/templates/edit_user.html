@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑用户</title>
+</head>
+<body>
+<h1>编辑用户</h1>
+<form th:action="@{/user/edit/{id}(id=${user.id})}" th:object="${user}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}">
+    <br>
+    <label for="email">Email:</label>
+    <input type="text" id="email" th:field="*{email}">
+    <br>
+    <input type="submit" value="Update">
+</form>
+<a th:href="@{/}">返回</a>
+</body>
+</html>
